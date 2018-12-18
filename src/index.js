@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import SeasonDisplay from './SeasonDisplay';
+import Spinner from './Spinner';
 
 class App extends React.Component{
     //* Alternative way to give state beacuse Babel will compile in constructor method
@@ -27,7 +28,11 @@ class App extends React.Component{
         }
 
         if(!this.state.errorMessage && !this.state.lat){
-            return <div>Loading...</div>
+
+        //return <Spinner message='Please accept Location request'/>
+
+        // Using defaultProps we have to go to spinner.js
+           return <Spinner/>
         }
 
         return <div><SeasonDisplay lat={this.state.lat}/> </div>

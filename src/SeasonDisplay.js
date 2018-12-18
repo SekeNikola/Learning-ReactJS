@@ -1,4 +1,18 @@
+import './seasonDisplay.css'
 import React from  'react';
+
+//* Refactoring ternary expressions
+const seasonConfig ={
+    summer:{
+        text: 'Lets hit the beach',
+        iconName: 'sun'
+    },
+
+    winter:{
+        text: 'Brrrrr its cold',
+        iconName: 'snowflake'
+    }
+}
 
 const getSeason = (lat, month) =>{
     if(month > 2 && month < 9){
@@ -10,10 +24,15 @@ const getSeason = (lat, month) =>{
 
 const SeasonDisplay = (props) =>{
     const season = getSeason(props.lat, new Date().getMonth())
+    //* We refactor this
+    // const text = season === 'summer' ? 'Lets hit the beach' : 'Brrrr its cold'
+    // const icon = season === 'summer' ? 'sun' : 'snowflake'
+    const {text, iconName} = seasonConfig[season] //{text, iconName}
     return(
-        <div>
-            <h1>Season display</h1>
-            <p>{season}</p>
+        <div className={`season-display ${season}`}>
+            <i className={`icon-left massive ${iconName} icon`}/>
+           <h1>{text}</h1>
+           <i className={`icon-right massive ${iconName} icon`}/>
         </div>
     )
 }
